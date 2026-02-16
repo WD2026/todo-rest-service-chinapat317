@@ -94,5 +94,8 @@ def todos_options(response: Response):
 @app.options("/todos/{todo_id}")
 def todo_options(todo_id: int, response: Response):
     """Return the allowed HTTP methods for this URL."""
+    todo = dao.get(todo_id)
+    if not todo:
+        raise HTTPException(status_code=404, detail="Todo not found")
     response.headers["Allow"] = "GET,PUT,DELETE,OPTIONS"
     return
