@@ -5,11 +5,6 @@
     "id": 1
   },
   {
-    "text": "Write some unit tests of persistence",
-    "done": true,
-    "id": 3
-  },
-  {
     "text": "Run the todo service in a container with Nginx and uvicorn",
     "done": false,
     "id": 4
