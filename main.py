@@ -78,8 +78,11 @@ def delete_todo(todo_id: int):
     Return {what?} if todo is not found.
     """
     # TODO implement this method
-    raise HTTPException(status_code=500, detail="Not implemented yet")
-
+    try:
+        dao.delete(todo_id=todo_id)
+    
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Id not found")
 
 @app.options("/todos/")
 def todos_options(response: Response):

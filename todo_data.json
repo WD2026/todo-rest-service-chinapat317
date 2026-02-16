@@ -5,11 +5,6 @@
     "id": 1
   },
   {
-    "text": "Write a RESTful API using FastAPI",
-    "done": false,
-    "id": 2
-  },
-  {
     "text": "Write some unit tests of persistence",
     "done": true,
     "id": 3
