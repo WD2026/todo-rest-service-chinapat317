@@ -8,3 +8,12 @@ from routers import todo
 # redirection of paths without trailing slash.
 app = FastAPI(title="Todo REST API", root_path="/todo")
 app.include_router(todo.router)
+
+
+"""
+Comment:  
+     root_path="/todo" means that the external clients
+     will access the service using URLs like:
+
+     http://somehost/todo/todos/...
+"""

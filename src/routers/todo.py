@@ -1,3 +1,4 @@
+import logging
 from fastapi import APIRouter, HTTPException, Request, Response
 from models import TodoCreate, Todo
 from persistence import TodoDao
@@ -7,6 +8,7 @@ router = APIRouter(tags=["Todo"])
 # Data Access Object (dao) provides persistence operations for todo.
 dao = TodoDao("todo_data.json")
 
+logger = router.logger    # logging.getLogger(__name__)
 
 ### REST service URLs and request handlers ###
 @router.get("/todos/", response_model=list[Todo])
@@ -18,7 +20,9 @@ def get_todos():
 @router.post("/todos/", response_model=Todo, status_code=201)
 def create_todo(todo: TodoCreate, request: Request, response: Response):
     """Create and save a new todo. A unique ID is assigned."""
+    logger.info(f'Saving todo "{todo.text}"')
     created = dao.save(todo)
+    logger.info(f"Saved todo with id {todo.id}")
     # Return the location of the new todo.
     location = f"/todos/{created.id}"
     # A cleaner way to get the location URL is reverse mapping.
